@@ -1,6 +1,7 @@
 package market;
 
-import market.produtos.Produto;
+import market.lib.ProdutoFactory;
+
 import market.entidades.Cliente;
 
 import java.util.Random;
@@ -34,25 +35,37 @@ public class Consumidor extends Thread {
         int cpf = ran.nextInt(CPFs.length);
         Cliente cliente = new Cliente(nomes[nome], telefones[telefone], CPFs[cpf]);
         int quantDeItens = ran.nextInt(29)+1;
-
+        System.out.println("itens comprados: "+ quantDeItens);
         int j;
         while(quantDeItens > 0){
             j = ran.nextInt(18);
-            synchronized (this) {
+            synchronized (this){
                 if (estoque[j] > 0) {
                     estoque[j] -= 1;
-                    quantDeItens--;
+                    quantDeItens --;
+                    System.out.println(quantDeItens);
                     ListaDecompras[j] ++;
                 }
             }
         }
-        ExibirListaDeCompras(cliente);
+        try
+        {
+            ExibirListaDeCompras(cliente);
+            Thread.sleep(1000);
+        }
+        catch(InterruptedException e)
+        {
+            System.out.println("Erro de interrupcao");
+        }
     }
 
-    public void ExibirListaDeCompras(Cliente cliente){
+    public void ExibirListaDeCompras(Cliente cliente) {
         System.out.printf("O cliente %s comprou:\n", cliente.nome);
         for (int i = 0; i < this.ListaDecompras.length; i++) {
-            if(ListaDecompras[i] > 0)System.out.printf("   %d de %s\n",ListaDecompras[i], );
+            if (ListaDecompras[i] > 0){
+                System.out.print("   ");
+                ProdutoFactory.getProduto(i).compra(ListaDecompras[i]);
+            }
         }
     }
 }

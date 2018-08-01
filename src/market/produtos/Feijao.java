@@ -1,12 +1,8 @@
 package market.produtos;
 
 public class Feijao extends Produto{
-    private boolean temFeijao = false;
     private static int quantidade = 50;
     public Feijao(){
-        if(temFeijao){
-            throw new RuntimeException("ja tem feijao");
-        }
         nome = "feijao";
         preco = 10.90f;
         id = 1;
@@ -18,5 +14,10 @@ public class Feijao extends Produto{
 
     protected void setQuantidade(int novaQuant){
         quantidade = novaQuant;
+    }
+
+    @Override
+    public void compra(int quant) {
+        System.out.printf("%d %s de feijao\n", quant, quant>1?"kgs":"kg");
     }
 }
