@@ -6,4 +6,10 @@ public class Cliente extends Pessoa{
         this.tel = tel;
         this.CPF = CPF;
     }
+    public Cliente(Pessoa pessoa)
+    {
+        this.nome = pessoa.nome;
+        this.tel = pessoa.tel;
+        this.CPF = pessoa.CPF;
+    }
 }
