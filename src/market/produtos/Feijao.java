@@ -4,8 +4,9 @@ public class Feijao extends Produto{
     private static int quantidade = 50;
     public Feijao(){
         nome = "feijao";
-        preco = 10.90f;
+        preco = 7.90f;
         id = 1;
+        unidade = "kg";
     }
 
     public int getQuantidade(){
@@ -14,10 +15,5 @@ public class Feijao extends Produto{
 
     protected void setQuantidade(int novaQuant){
         quantidade = novaQuant;
-    }
-
-    @Override
-    public void compra(int quant) {
-        System.out.printf("%d %s de feijao\n", quant, quant>1?"kgs":"kg");
     }
 }

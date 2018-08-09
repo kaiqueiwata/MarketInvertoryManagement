@@ -4,19 +4,15 @@ public class Salame extends Produto{
     private static int quantidade = 50;
     public Salame(){
         nome = "Salame";
-        preco = 15.25f;
+        preco = 42.00f;
         id = 0;
+        unidade = "kg";
     }
     public int getQuantidade(){
         return this.quantidade;
     }
     protected void setQuantidade(int novaQuant){
         quantidade = novaQuant;
-    }
-
-    @Override
-    public void compra(int quant) {
-        System.out.printf("%d %s de salame\n", quant, quant>1?"kgs":"kg");
     }
 }
 
